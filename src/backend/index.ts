@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import express from 'express'
 import userController from './controllers/user.controller'
 import '../user/infrastructure/mongoose/connection'

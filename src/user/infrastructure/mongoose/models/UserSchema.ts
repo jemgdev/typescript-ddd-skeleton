@@ -5,6 +5,8 @@ const userSchema = new Schema<User>({
   age: Number,
   lastname: String,
   name: String
+}, {
+  versionKey: false
 })
 
 export default model('User', userSchema)
