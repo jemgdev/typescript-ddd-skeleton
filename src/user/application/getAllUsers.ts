@@ -1,9 +1,9 @@
 import UserMongooseRepository from '../infrastructure/mongoose/UserMongooseRepository'
 import UserRepository from '../domain/UserRepository'
-import IUser from '../domain/IUser'
+import User from '../domain/User'
 const repository: UserRepository = new UserMongooseRepository()
 
-const getAllUsers = async (): Promise<IUser[]> => {
+const getAllUsers = async (): Promise<User[]> => {
   const users = await repository.getAllUsers()
   return users
 }

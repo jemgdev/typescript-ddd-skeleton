@@ -1,7 +1,7 @@
-import IUser from './IUser'
+import User from './User'
 
 export default interface UserRepository {
-  save(user: IUser): Promise<void>
-  getUserById(userId: string): Promise<IUser>
-  getAllUsers(): Promise<IUser[]>
+  save: (user: User) => Promise<void>
+  getUserById: (userId: string) => Promise<User>
+  getAllUsers: () => Promise<User[]>
 }

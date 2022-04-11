@@ -1,17 +1,19 @@
-import IUser from "../../domain/IUser";
-import User from "./models/User";
-import UserRepository from "../../domain/UserRepository";
+import User from '../../domain/User'
+import UserSchema from './models/UserSchema'
+import UserRepository from '../../domain/UserRepository'
 
 export default class UserMongooseRepository implements UserRepository {
-  async save(user: IUser): Promise<void> {
-    const newUser = new User (user)
+  async save (user: User): Promise<void> {
+    const newUser = new UserSchema(user)
     await newUser.save()
   }
-  async getUserById(userId: string): Promise<IUser> {
-    const user = await User.findById(userId)
+
+  async getUserById (userId: string): Promise<User> {
+    const user = await UserSchema.findById(userId)
     return user
   }
-  async getAllUsers(): Promise<IUser[]> {
-    return await User.find({})
+
+  async getAllUsers (): Promise<User[]> {
+    return await UserSchema.find({})
   }
 }
