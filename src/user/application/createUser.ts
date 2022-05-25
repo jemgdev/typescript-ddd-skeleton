@@ -5,7 +5,7 @@ import User from '../domain/User'
 const repository: UserRepository = new UserMongooseRepository()
 
 const createUser = async (user: User) => {
-  user.name = `${user.name} + DDD`
+  user.name = `${user.name} + DDD Skeleton`
   await repository.save(user)
 }
 
