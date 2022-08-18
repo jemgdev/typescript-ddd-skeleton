@@ -1,12 +1,18 @@
 import { Schema, model } from 'mongoose'
-import User from '../../../domain/User'
+import UserEntity from '../../../domain/user.entity'
 
-const userSchema = new Schema<User>({
+const UserSchema = new Schema<UserEntity>({
+  userId: {
+    type: String,
+    unique: true
+  },
+  email: String,
   age: Number,
   lastname: String,
   name: String
 }, {
-  versionKey: false
+  versionKey: false,
+  _id: false
 })
 
-export default model('User', userSchema)
+export default model('User', UserSchema)

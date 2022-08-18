@@ -1,35 +1,46 @@
 import { Router } from 'express'
-import createUser from '../../user/application/createUser'
-import getAllUsers from '../../user/application/getAllUsers'
-import getUserById from '../../user/application/getUserById'
+import UserModel from '../../user/domain/user.model'
+import UserUseCase from '../../user/application/user.usecase'
+import UserMongooseRepository from '../../user/infrastructure/mongoose/user.mongoose.repository'
+//import UserPrismaRepository from '../../user/infrastructure/prisma/user.prisma.repository'
 
 const userRouter = Router()
+const userUseCase = new UserUseCase(new UserMongooseRepository())
 
 userRouter.post('/', async (req, res) => {
-  const { name, lastname, age } = req.body
+  const { name, lastname, age, email } = req.body
   try {
-    await createUser({ name, lastname, age })
-    res.json({
-      message: 'User was saved'
-    })
+    const userSaved = await userUseCase.createUser(new UserModel({ name, lastname, age, email }))
+    res.json(userSaved)
   } catch (error) {
     res.json({
       message: error
     })
   }
-  
 })
 
-userRouter.get('/all', async (_req, res) => {
-  const users = await getAllUsers()
+userRouter.get('/', async (_req, res) => {
+  const users = await userUseCase.listUsers()
   res.json(users)
 })
 
-userRouter.get('/', async (req, res) => {
-  const { id } = req.body
-  const user = await getUserById(id)
+userRouter.get('/:id', async (req, res) => {
+  const { id } = req.params
+  const user = await userUseCase.getUserById(id)
   res.json(user)
 })
 
+userRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  const user = await userUseCase.deleteUserById(id)
+  res.json(user)
+})
+
+userRouter.patch('/:id', async (req, res) => {
+  const { id } = req.params
+  const { name, lastname, age, email } = req.body
+  const userUpdated = await userUseCase.updateUserById(id, new UserModel({ name, lastname, age, email }))
+  res.json(userUpdated)
+})
 
 export default userRouter
