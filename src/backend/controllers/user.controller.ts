@@ -2,6 +2,7 @@ import { Router } from 'express'
 import UserModel from '../../user/domain/user.model'
 import UserUseCase from '../../user/application/user.usecase'
 import UserMongooseRepository from '../../user/infrastructure/mongoose/user.mongoose.repository'
+import { resolve } from 'path'
 //import UserPrismaRepository from '../../user/infrastructure/prisma/user.prisma.repository'
 
 const userRouter = Router()
@@ -41,6 +42,12 @@ userRouter.patch('/:id', async (req, res) => {
   const { name, lastname, age, email } = req.body
   const userUpdated = await userUseCase.updateUserById(id, new UserModel({ name, lastname, age, email }))
   res.json(userUpdated)
+})
+
+userRouter.get('/data', (req, _res) => {
+  _res.send({
+    hola: 'hoas'
+  })
 })
 
 export default userRouter

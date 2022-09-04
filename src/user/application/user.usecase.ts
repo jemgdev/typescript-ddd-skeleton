@@ -2,7 +2,11 @@ import UserRepository from '../domain/user.repository'
 import UserModel from '../domain/user.model'
 
 export default class UserUseCase {
-  constructor(private readonly userRepository: UserRepository) {}
+  private readonly userRepository: UserRepository
+
+  constructor(userRepository: UserRepository) {
+    this.userRepository = userRepository
+  }
 
   public async createUser(user: UserModel) {
     const userCreated = await this.userRepository.saveUser(user)

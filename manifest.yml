@@ -1,0 +1,7 @@
+applications:
+- path: .
+  name: typescript-ddd-skeleton
+  command: npm start
+  buildpack: nodejs_buildpack
+  memory: 256M
+  instances: 1

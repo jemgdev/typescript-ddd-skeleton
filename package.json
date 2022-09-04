@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "This is a typescript DDD skeleton for project that needs a clean architecture",
   "main": "backend/index.ts",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node build/backend/index.js",
     "dev": "ts-node-dev src/backend/index.ts",
     "cli": "ts-node-dev src/cli/index.ts",
     "lint": "eslint .",
