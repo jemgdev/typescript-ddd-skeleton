@@ -4,4 +4,4 @@ applications:
   command: npm start
   buildpack: nodejs_buildpack
   memory: 256M
-  instances: 7
+  instances: 4
