@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.get('/', (_req, res) => {
   res.status(200).json({
-    message: 'Hello world'
+    message: 'Hello world with continuum integration'
   })
 })
 
